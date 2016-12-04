@@ -133,5 +133,21 @@ namespace Storyline.Story
         protected abstract float AveragingDimension(SizeF size);
 
         public abstract SizeF Size { get; }
+
+        public void ScalePadding(float factor)
+        {
+            foreach (var storyItem in Sizeables)
+            {
+                storyItem.ScalePadding(factor);
+            }
+        }
+
+        public void ResetPaddingScaling()
+        {
+            foreach (var storyItem in Sizeables)
+            {
+                storyItem.ResetPaddingScaling();
+            }
+        }
     }
 }

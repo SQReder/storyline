@@ -34,6 +34,8 @@
             this.btnNewImageSet = new System.Windows.Forms.Button();
             this.cbDebug = new System.Windows.Forms.CheckBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.msgPaddingReduced = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSave
@@ -83,7 +85,7 @@
             // 
             this.cbDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbDebug.AutoSize = true;
-            this.cbDebug.Location = new System.Drawing.Point(539, 385);
+            this.cbDebug.Location = new System.Drawing.Point(700, 330);
             this.cbDebug.Name = "cbDebug";
             this.cbDebug.Size = new System.Drawing.Size(122, 17);
             this.cbDebug.TabIndex = 5;
@@ -97,11 +99,37 @@
             this.saveFileDialog.Filter = "jpg files|*.jpg";
             this.saveFileDialog.InitialDirectory = ".";
             // 
+            // msgPaddingReduced
+            // 
+            this.msgPaddingReduced.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.msgPaddingReduced.AutoSize = true;
+            this.msgPaddingReduced.BackColor = System.Drawing.Color.Yellow;
+            this.msgPaddingReduced.Location = new System.Drawing.Point(496, 304);
+            this.msgPaddingReduced.Name = "msgPaddingReduced";
+            this.msgPaddingReduced.Padding = new System.Windows.Forms.Padding(4);
+            this.msgPaddingReduced.Size = new System.Drawing.Size(359, 21);
+            this.msgPaddingReduced.TabIndex = 6;
+            this.msgPaddingReduced.Text = "Отступы были пропорционально уменьшены для лучшей раскладки";
+            this.msgPaddingReduced.Visible = false;
+            this.msgPaddingReduced.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(648, 358);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Ширина";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 445);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.msgPaddingReduced);
             this.Controls.Add(this.cbDebug);
             this.Controls.Add(this.btnNewImageSet);
             this.Controls.Add(this.btnRefit);
@@ -124,6 +152,8 @@
         private System.Windows.Forms.Button btnNewImageSet;
         private System.Windows.Forms.CheckBox cbDebug;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Label msgPaddingReduced;
+        private System.Windows.Forms.Label label1;
     }
 }
 

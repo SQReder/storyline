@@ -11,7 +11,7 @@ namespace Storyline.Story
         /// Производит одну итерацию линейного приближения расположения ячеек в наборе
         /// </summary>
         /// <param name="targetSize">Размер в который необходимо вписаться</param>
-        /// <returns>Неотрицательная количественная оценка изменений расположений ячеек за итерацию</returns>
+        /// <returns>Неотрицательная суммарная оценка ошибки оценки расположений ячеек</returns>
         float Iterate(SizeF targetSize);
 
         /// <summary>
@@ -30,5 +30,16 @@ namespace Storyline.Story
         /// </summary>
         /// <returns>Набор объектов для отрисовки</returns>
         DrawTarget[] GetDrawTargets();
+
+        /// <summary>
+        /// Сбрасывает масштабирование отступов
+        /// </summary>
+        void ResetPaddingScaling();
+
+        /// <summary>
+        /// Позволяет изменить масштабирование отступов
+        /// </summary>
+        /// <param name="factor">Коэффицент масштабирования размер отступов</param>
+        void ScalePadding(float factor);
     }
 }

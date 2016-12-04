@@ -8,13 +8,13 @@ namespace Storyline
     /// </summary>
     public struct Padding
     {
-        public readonly int Top;
-        public readonly int Bottom;
+        public readonly float Top;
+        public readonly float Bottom;
 
-        public readonly int Left;
-        public readonly int Right;
+        public readonly float Left;
+        public readonly float Right;
 
-        public Padding(int left, int right, int top, int bottom)
+        public Padding(float left, float right, float top, float bottom)
         {
             if (left < 0)
             {
@@ -40,12 +40,12 @@ namespace Storyline
             Left = left;
         }
 
-        public Padding(int horizontal, int vertical)
+        public Padding(float horizontal, float vertical)
             : this(horizontal, horizontal, vertical, vertical)
         {
         }
 
-        public Padding(int size)
+        public Padding(float size)
             : this(size, size, size, size)
         {
         }
@@ -56,5 +56,10 @@ namespace Storyline
         }
 
         public SizeF Size => new SizeF(Left + Right, Top + Bottom);
+
+        public Padding Scaled(float factor)
+        {
+            return new Padding(Left * factor, Right * factor, Top * factor, Bottom * factor);
+        }
     }
 }

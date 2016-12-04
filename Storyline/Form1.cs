@@ -61,7 +61,7 @@ namespace Storyline
             {
                 var idx = Random.Next(1, 10);
                 var image = Image.FromFile($"./images/{idx}.jpg");
-                var imageWrapper = new ImageWrapper(image, new Padding(4, 4));
+                var imageWrapper = new ImageWrapper(image, new Padding(25, 5, 10, 2));
                 inner.Add(imageWrapper);
             }
         }
@@ -71,6 +71,8 @@ namespace Storyline
             var row = Generate();
 
             _storyline = new Storyline(row);
+
+            msgPaddingReduced.Visible = false;
 
             RefreshImage();
         }
@@ -116,6 +118,7 @@ namespace Storyline
         private void RefreshImage()
         {
             _storylineImage = _storyline.GetImage(_size, cbDebug.Checked);
+            msgPaddingReduced.Visible = _storyline.IsPaddingReduced;
             Invalidate();
         }
 
@@ -127,6 +130,11 @@ namespace Storyline
         private void cbDebug_CheckedChanged(object sender, EventArgs e)
         {
             RefreshImage();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

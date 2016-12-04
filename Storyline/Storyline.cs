@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using Storyline.Story;
 
 namespace Storyline
@@ -8,6 +9,8 @@ namespace Storyline
     internal class Storyline
     {
         private readonly Row _row;
+
+        public bool IsPaddingReduced { get; private set; }
 
         public Storyline(Row row)
         {
@@ -19,25 +22,42 @@ namespace Storyline
             _row = row;
         }
 
-        private void FitSize(int width)
+        private float MakeBestFit(int width)
         {
             var borders = new SizeF(width, width);
 
-            var olddiff = float.MaxValue;
+            var olderror = float.MaxValue;
             var done = false;
             while (!done)
             {
-                var diff = _row.Iterate(borders);
-                var progress = Math.Abs(diff - olddiff);
-                if (progress < 0.00001)
+                var error = _row.Iterate(borders);
+                var diff = Math.Abs(error - olderror);
+                if (diff < 0.00001)
                     done = true;
-                olddiff = diff;
+                olderror = error;
+            }
+
+            return olderror;
+        }
+
+        private void FitImages(int width)
+        {
+            IsPaddingReduced = false;
+            _row.ResetPaddingScaling();
+
+            var error = MakeBestFit(width);
+
+            while (error > 0.001)
+            {
+                IsPaddingReduced = true;
+                _row.ScalePadding(0.95f);
+                error = MakeBestFit(width);
             }
         }
 
         public Bitmap GetImage(int width, bool drawDebugInfo = false)
         {
-            FitSize(width);
+            FitImages(width);
 
             var drawTargets = _row.GetDrawTargets();
 
